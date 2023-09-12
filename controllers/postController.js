@@ -23,12 +23,11 @@ const getPost = async (req, res) => {
     res.status(200).json(post);
 };
 
-// create new post
+// creating new post
 const createPost = async (req, res) => {
     const {text} = req.body;
     // add document to database
     try{
-        // create a new document
         const post = await Post.create({text});
         res.status(200).json(post);
     }catch(error){
@@ -37,7 +36,7 @@ const createPost = async (req, res) => {
 };
 
 
-// delete a post
+// deleting a post
 const deletePost = async (req, res) => {
     const { id } = req.params;
     
@@ -54,7 +53,7 @@ const deletePost = async (req, res) => {
     res.status(200).json(post);
 };  
 
-// update a post
+// updating a post
 const updatePost = async (req, res) => {
     const { id } = req.params;
     
@@ -64,7 +63,7 @@ const updatePost = async (req, res) => {
 
     // second argument is the update
     const post = await Post.findOneAndUpdate({_id: id}, {
-        ...req.body // that will spread in the object{}
+        ...req.body
     });
     
     if(!post){
