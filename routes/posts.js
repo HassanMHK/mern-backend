@@ -2,9 +2,13 @@ const express = require('express');
 const {
     getPosts, getPost, createPost, deletePost, updatePost
 } = require('../controllers/postController');
+const requireAuth = require('../middleware/requireAuth');
 
 // creating the router
 const router = express.Router();
+
+// Protect the following routes by authorization
+router.use(requireAuth);
 
 // GET all posts
 router.get('/', getPosts);
